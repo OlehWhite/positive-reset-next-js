@@ -5,7 +5,6 @@ import {
   Title,
   WrapperHeader,
   Counselors,
-  PersonCard,
   WrapperCards,
   Prescribers,
 } from "../otherPages/ourStaff/style";
