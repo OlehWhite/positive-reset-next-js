@@ -44,7 +44,7 @@ import { PRIVATE_DATA } from "../../../otherPages/privateData";
 import LogoImg from "../../LogoImg/LogoImg";
 import IMGLocation from "../../../public/icons8-location-50-dark.png";
 import { Iframe } from "../../../otherPages/career/style";
-import {LINKS} from "../../../otherPages/utils";
+import { LINKS, OTHER_INFO } from "../../../otherPages/utils";
 
 const BASE_MENU = [
   { page: "Home", path: "/" },
@@ -62,23 +62,16 @@ interface Post {
 }
 
 const ID = "positiveresetTelEmailAddress";
-const ID_Links = "positiveresetLinks";
 const IDPosts = "aboutFranchising";
-const IDWorkingHours = "positiveresetWorkingHours";
 
 export const Footer: FC = () => {
-  const [telNum, setTelNum] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
   const [posts, setPosts] = useState<Post[]>([]);
-  const [location, setLocation] = useState<string>("");
-  const [linkEmail, setLinkEmail] = useState<string>("");
-  const [googleMap, setGoogleMap] = useState<string>("");
   const [openModalWindow, setOpenModalWindow] = useState<boolean>(false);
 
   useEffect(() => {
     axios
       .get(
-        `https://cdn.contentful.com/spaces/${PRIVATE_DATA.spaseID}/entries?content_type=${IDPosts}&access_token=${PRIVATE_DATA.accessId}`
+        `https://cdn.contentful.com/spaces/${PRIVATE_DATA.spaseID}/entries?content_type=${IDPosts}&access_token=${PRIVATE_DATA.accessId}`,
       )
       .then((response: any) => {
         if (response.data.items.length > 0) {
@@ -89,7 +82,7 @@ export const Footer: FC = () => {
 
             return axios
               .get(
-                `https://cdn.contentful.com/spaces/${PRIVATE_DATA.spaseID}/assets/${imgID}?access_token=${PRIVATE_DATA.accessId}`
+                `https://cdn.contentful.com/spaces/${PRIVATE_DATA.spaseID}/assets/${imgID}?access_token=${PRIVATE_DATA.accessId}`,
               )
               .then((response: any) => {
                 const newPost: Post = {
@@ -106,26 +99,6 @@ export const Footer: FC = () => {
         console.error("Error fetching posts:", error);
       });
   }, []);
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://cdn.contentful.com/spaces/${PRIVATE_DATA.spaseID}/entries?content_type=${ID}&access_token=${PRIVATE_DATA.accessId}`
-      )
-      .then((response) => {
-        setTelNum(response.data.items[0].fields.telephoneNumber);
-        setEmail(response.data.items[0].fields.email);
-        setLocation(response.data.items[0].fields.address);
-        setLinkEmail(response.data.items[0].fields.linkEmail);
-        setGoogleMap(
-          response.data.items[0].fields.googleMap.content[0].content[0].value
-        );
-      })
-      .catch((error) => {
-        console.error("Error fetching posts:", error);
-      });
-  }, []);
-
 
   const handleOpen = () => setOpenModalWindow(true);
   const handleClose = () => setOpenModalWindow(false);
@@ -151,9 +124,9 @@ export const Footer: FC = () => {
               />
             </WrapperImg>
             <ContactInfo sx={{ width: 208 }}>
-              <Tel>{telNum}</Tel>
-              <Link id="white-link" href={linkEmail}>
-                {email}
+              <Tel>{OTHER_INFO.tel}</Tel>
+              <Link id="white-link" href={OTHER_INFO.email_link}>
+                {OTHER_INFO.email}
               </Link>
             </ContactInfo>
           </Contact>
@@ -162,7 +135,7 @@ export const Footer: FC = () => {
               <Image src={IMGLocation} width={40} alt="Phone" title="Phone" />
             </WrapperImg>
             <ContactInfo>
-              <Address onClick={handleOpen}>{location}</Address>
+              <Address onClick={handleOpen}>{OTHER_INFO.address}</Address>
             </ContactInfo>
           </Contact>
         </Logo>
@@ -213,13 +186,13 @@ export const Footer: FC = () => {
             </WrapperAlarm>
           </WrapperPosition>
           <Days>
-           <Day>Sunday: Close</Day>
-           <Day>Monday: 9am - 8pm</Day>
-           <Day>Thusday: 9am - 8pm</Day>
-           <Day>Wednesday: 9am - 8pm</Day>
-           <Day>Thursday: 9am - 8pm</Day>
-           <Day>Friday: 9am - 8pm</Day>
-           <Day>Saturday: 9am - 8pm</Day>
+            <Day>Sunday: Close</Day>
+            <Day>Monday: 9am - 8pm</Day>
+            <Day>Thusday: 9am - 8pm</Day>
+            <Day>Wednesday: 9am - 8pm</Day>
+            <Day>Thursday: 9am - 8pm</Day>
+            <Day>Friday: 9am - 8pm</Day>
+            <Day>Saturday: 9am - 8pm</Day>
           </Days>
         </WorkingHours>
       </Wrapper>
@@ -275,7 +248,7 @@ export const Footer: FC = () => {
             margin: "0 auto 35px",
           }}
         >
-          <Iframe src={googleMap}></Iframe>
+          <Iframe src={OTHER_INFO.google_map}></Iframe>
         </Box>
       </Modal>
     </Container>

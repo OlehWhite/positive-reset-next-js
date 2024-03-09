@@ -42,7 +42,7 @@ const OurStaff = () => {
         console.error("Error fetching posts:", error);
       });
   }, []);
-  console.log(prescribers);
+
   return (
     <>
       <Head>
