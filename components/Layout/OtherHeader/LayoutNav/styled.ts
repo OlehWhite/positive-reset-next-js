@@ -39,11 +39,3 @@ export const WrapperMenu = styled(Box)(() => {
     },
   };
 });
-
-export const WrapperBox = styled(Box)(() => {
-  return {
-    "@media (max-width: 950px)": {
-      display: "none",
-    },
-  };
-});

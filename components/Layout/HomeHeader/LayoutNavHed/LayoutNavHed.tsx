@@ -13,7 +13,6 @@ export const LayoutNavHed: FC = () => {
   const [active, setActive] = useState("/");
   const [location, setLocation] = useState("/");
   const router = useRouter();
-  const currentPath = router.pathname;
   const [display, setDisplay] = useState<number>(0);
 
   const handleNavClick = (link: string) => {

@@ -8,11 +8,9 @@ import {
   TextRating,
 } from "./styled";
 import { LinearProgressWithLabel } from "../../../components/LinearProgressWithLabel/LinearProgressWithLabel";
-import IGMLabel from "../../../public/signature-white-img.png";
 import { FC, useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import axios from "axios";
-import Image from "next/image";
 import IMGLogo from "../../../public/gLLTpCpk.png";
 import { PRIVATE_DATA } from "../../privateData";
 
@@ -24,7 +22,7 @@ export const FranchiseOptions: FC = () => {
   useEffect(() => {
     axios
       .get(
-        `https://cdn.contentful.com/spaces/${PRIVATE_DATA.spaseID}/entries?content_type=${ID}&access_token=${PRIVATE_DATA.accessId}`
+        `https://cdn.contentful.com/spaces/${PRIVATE_DATA.spaseID}/entries?content_type=${ID}&access_token=${PRIVATE_DATA.accessId}`,
       )
       .then((response) => {
         setRating(response.data.items);
@@ -54,7 +52,7 @@ export const FranchiseOptions: FC = () => {
                 </TextRating>
                 <LinearProgressWithLabel
                   value={Number(
-                    rating.fields.number.content[0].content[0].value
+                    rating.fields.number.content[0].content[0].value,
                   )}
                 />
               </Rating>

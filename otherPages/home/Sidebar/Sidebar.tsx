@@ -9,7 +9,7 @@ type Anchor = "right";
 
 export const Sidebar: FC = () => {
   const [state, setState] = useState([
-    { right: false }, // Початковий стан для першого Drawer
+    { right: false },
   ]);
   const router = useRouter();
   const currentPath = router.pathname;
@@ -26,7 +26,7 @@ export const Sidebar: FC = () => {
       }
 
       const newState = [...state];
-      newState[index] = { right: open }; // Оновлюємо стан лише для відповідного Drawer
+      newState[index] = { right: open };
       setState(newState);
     };
 

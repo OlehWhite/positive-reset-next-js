@@ -1,5 +1,5 @@
 import { Container, Wrapper, WrapperSidebar, WrapperMenu } from "./styled";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Box } from "@mui/material";
 import { MUIAccordion } from "../../../MUIAccordion/MUIAccordion";
 import Link from "next/link";
@@ -10,14 +10,9 @@ import { BASE_NAV } from "../../constants";
 import { ShowBlock } from "../../styled";
 
 export const LayoutNav: FC = () => {
-  const [active, setActive] = useState("/");
-  const [location, setLocation] = useState("/");
   const router = useRouter();
-  const currentPath = router.pathname;
 
   const handleNavClick = (link: string) => {
-    setActive(link);
-    setLocation(router.pathname);
     router.push(link);
   };
 

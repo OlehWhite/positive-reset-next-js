@@ -25,6 +25,7 @@ import IMGLocation from "../../../../public/icons8-location-50-dark.png";
 import Link from "next/link";
 import { Box, Modal } from "@mui/material";
 import { Iframe } from "../../../../otherPages/career/style";
+import {LINKS} from "../../../../otherPages/utils";
 
 const ID = "positiveresetTelEmailAddress";
 const ID_Links = "positiveresetLinks";
@@ -33,8 +34,6 @@ export const LayoutHeader: FC = () => {
   const [email, setEmail] = useState<string>("");
   const [telNum, setTelNum] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const [linkFacebook, setLinkFaceBook] = useState<string>("");
-  const [linkLinkedin, setLinkLinkedin] = useState<string>("");
   const [linkEmail, setLinkEmail] = useState<string>("");
   const [googleMap, setGoogleMap] = useState<string>("");
   const [openModalWindow, setOpenModalWindow] = useState<boolean>(false);
@@ -58,16 +57,6 @@ export const LayoutHeader: FC = () => {
       });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://cdn.contentful.com/spaces/${PRIVATE_DATA.spaseID}/entries?content_type=${ID_Links}&access_token=${PRIVATE_DATA.accessId}`
-      )
-      .then((response) => {
-        setLinkFaceBook(response.data.items[0].fields.facebook);
-        setLinkLinkedin(response.data.items[0].fields.linkedIn);
-      });
-  });
 
   const handleOpen = () => setOpenModalWindow(true);
   const handleClose = () => setOpenModalWindow(false);
@@ -114,7 +103,7 @@ export const LayoutHeader: FC = () => {
           <FollowInfo>
             <Title>Follow Us</Title>
             <WrapperFollow>
-              <LinkA href={linkFacebook} target="_blank">
+              <LinkA href={LINKS.facebook} target="_blank">
                 <Image
                   src={IMGFacebook}
                   width={12}
@@ -123,7 +112,7 @@ export const LayoutHeader: FC = () => {
                   title="Facebook"
                 />
               </LinkA>
-              <LinkA href={linkLinkedin} target="_blank">
+              <LinkA href={LINKS.linkedin} target="_blank">
                 <Image
                   src={IMGLinkedin}
                   width={12}
