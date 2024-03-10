@@ -44,7 +44,7 @@ import { PRIVATE_DATA } from "../../../otherPages/privateData";
 import LogoImg from "../../LogoImg/LogoImg";
 import IMGLocation from "../../../public/icons8-location-50-dark.png";
 import { Iframe } from "../../../otherPages/career/style";
-import { LINKS, OTHER_INFO } from "../../../otherPages/utils";
+import { LINKS, OTHER_INFO, SCHEDULE } from "../../../otherPages/utils";
 
 const BASE_MENU = [
   { page: "Home", path: "/" },
@@ -186,13 +186,11 @@ export const Footer: FC = () => {
             </WrapperAlarm>
           </WrapperPosition>
           <Days>
-            <Day>Sunday: Close</Day>
-            <Day>Monday: 9am - 8pm</Day>
-            <Day>Tuesday: 9am - 8pm</Day>
-            <Day>Wednesday: 9am - 8pm</Day>
-            <Day>Thursday: 9am - 8pm</Day>
-            <Day>Friday: 9am - 8pm</Day>
-            <Day>Saturday: 9am - 8pm</Day>
+            {Object.entries(SCHEDULE).map((day, index) => (
+              <Day key={index}>
+                {day[0]}: {day[1]}
+              </Day>
+            ))}
           </Days>
         </WorkingHours>
       </Wrapper>
