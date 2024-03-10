@@ -48,7 +48,7 @@ export const LayoutHeader: FC = () => {
             />
           </WrapperImg>
           <ContactInfo>
-            <Tel>{OTHER_INFO.tel}</Tel>
+            <Tel href={`tel:${OTHER_INFO.tel}`}>{OTHER_INFO.tel}</Tel>
             <Link id="white-link" href={OTHER_INFO.email_link}>
               {OTHER_INFO.email}
             </Link>
