@@ -5,9 +5,11 @@ import { Box } from "@mui/material";
 import IMGFacebook from "../../../../public/icons8-facebook-50.png";
 import IMGInstagram from "../../../../public/instagram.png";
 import Image from "next/image";
-import {LINKS} from "../../../utils";
+import { useGetProjects } from "../../../../services/getInfo";
 
 export const Covid19: FC = () => {
+  const { project } = useGetProjects();
+
   return (
     <>
       <Wrapper>
@@ -50,12 +52,12 @@ export const Covid19: FC = () => {
             such as anxiety, depression, stress, or otherwise including those
             caused as a result of recent events. If you or someone you know
             resides in any area of the State of Illinois and is in need of our
-            services please reach out to our office at +1 (848) 228-3388 and get
+            services please reach out to our office at {project?.tel} and get
             access to the help you need.
           </Text>
-          <Tel>+1 (848) 228-3388</Tel>
+          <Tel>{project?.tel}</Tel>
           <Box sx={{ display: "flex" }}>
-            <Link href={LINKS.facebook} target="_blank">
+            <Link href={project?.links[0].link} target="_blank">
               <Image
                 src={IMGFacebook}
                 alt="Facebook"
@@ -64,7 +66,8 @@ export const Covid19: FC = () => {
                 height={22}
               />
             </Link>
-            <Link href={LINKS.instagram} target="_blank">
+
+            <Link href={project?.links[3].link} target="_blank">
               <Image
                 src={IMGInstagram}
                 alt="Linkedin"

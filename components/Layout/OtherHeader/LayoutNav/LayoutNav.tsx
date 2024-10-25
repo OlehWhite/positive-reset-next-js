@@ -23,6 +23,7 @@ export const LayoutNav: FC = () => {
           <WrapperMenu>
             <MUIAccordion />
           </WrapperMenu>
+
           <ShowBlock>
             {BASE_NAV.map((link, index) => (
               <Box sx={{ display: "inline-block" }} key={index}>
@@ -43,6 +44,7 @@ export const LayoutNav: FC = () => {
             ))}
           </ShowBlock>
         </Box>
+
         <WrapperSidebar>
           <Sidebar />
         </WrapperSidebar>
